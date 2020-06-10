@@ -14,17 +14,25 @@ use Illuminate\Http\Request;
 */
 
 header('Access-Control-Allow-Origin: *');
-header( 'Access-Control-Allow-Headers: Authorization, Content-Type' );
+header('Access-Control-Allow-Methods: GET, POST, PATCH, PUT, DELETE, OPTIONS');
+header('Access-Control-Allow-Headers: Origin, Content-Type, X-Auth-Token');
+
 
 Route::post('login', 'UserController@login');
 Route::post('register', 'UserController@register');
+Route::get('hotel/list', 'HotelController@getHotelList');
+Route::post('hotel/checkavailabilty', 'CalendarController@searchAvailability');
 
 Route::group(['middleware' => 'auth:api'], function()
 {
-    Route::post('clothslist', 'ClothsController@getList');
     Route::post('logout', 'UserController@logout');
-    Route::post('clothbyId/{id}', 'ClothsController@getById');
-    Route::post('clothsadd', 'ClothsController@addCloths');
-    Route::post('clothesdelete/{id}', 'ClothsController@deleteCloth');
-    Route::post('clothesupdate/{id}', 'ClothsController@updateCloth');
+    Route::post('booking/createbooking', 'BookingController@createBooking');
+    Route::post('booking/checkin', 'BookingController@checkIn');
+    Route::post('booking/checkout', 'BookingController@checkOut');
+    Route::post('booking/bookspa', 'BookingController@orderSpa');
+    Route::post('booking/bookfood', 'BookingController@orderFood');
+    Route::post('booking/booktaxi', 'BookingController@orderTaxi');
+    Route::post('booking/delete', 'BookingController@deleteBooking');
+    Route::post('booking/bookpool', 'BookingController@orderPool');
+    Route::get('booking/getbookinglist', 'BookingController@getBookingsByUser');
 });

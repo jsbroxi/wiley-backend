@@ -10,11 +10,11 @@ namespace App\Helpers;
 
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Config;
+use Symfony\Component\HttpFoundation\JsonResponse;
 
 /**
  * @category Libraries
  * @package App\Libraries\v1
- * @author Dulmi Jayathilaka <dulmi.j@eyepax.com>
  */
 class Helper
 {
@@ -49,8 +49,14 @@ class Helper
      *
      * @return array|mixed
      */
-    public function getReturnData($data, $message, $isSuccess = true, $notFound = false, $notAuthorized = false, $noContent = false)
-    {
+    public function getReturnData(
+        $data,
+        $message,
+        $isSuccess = true,
+        $notFound = false,
+        $notAuthorized = false,
+        $noContent = false
+    ) {
         $message = $message ? $message : trans('system.default_return_data_message');
         return [
             'success' => $isSuccess,
@@ -71,10 +77,16 @@ class Helper
      * @param int $statusCode Status code
      * @param array $headers Response Headers
      * @param null $options JSON_UNESCAPED_SLASHES
-     * @return mixed|\Symfony\Component\HttpFoundation\JsonResponse
+     * @return mixed|JsonResponse
      */
-    public function response($data, $message = null, $isSuccess = true, $statusCode = 200, $headers = [], $options = null)
-    {
+    public function response(
+        $data,
+        $message = null,
+        $isSuccess = true,
+        $statusCode = 200,
+        $headers = [],
+        $options = null
+    ) {
         $responseData = $this->getResponseData($data, $message, $isSuccess);
         return response()->json($responseData, $statusCode, $headers, $options);
     }

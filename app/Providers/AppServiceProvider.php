@@ -2,6 +2,7 @@
 
 namespace App\Providers;
 
+use App\Interfaces\BookingRepositoryInterface;
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
@@ -18,8 +19,16 @@ class AppServiceProvider extends ServiceProvider
             'App\Repositories\UserRepository'
         );
         $this->app->bind(
-            'App\Interfaces\ClothsRepositoryInterface',
-            'App\Repositories\ClothsRepository'
+            'App\Interfaces\HotelRepositoryInterface',
+            'App\Repositories\HotelRepository'
+        );
+        $this->app->bind(
+            'App\Interfaces\CalendarRepositoryInterface',
+            'App\Repositories\CalendarRepository'
+        );
+        $this->app->bind(
+            'App\Interfaces\BookingRepositoryInterface',
+            'App\Repositories\BookingRepository'
         );
     }
 

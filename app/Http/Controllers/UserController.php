@@ -10,7 +10,13 @@ use App\User;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Input;
 
-
+/**
+ * Handles the authentication functions of the system
+ *
+ * @package  App\Http\Controllers
+ * @category Controllers
+ * @author   <Janaka bandara> <jsbnilantha@live.com>
+ */
 class UserController extends Controller
 {
     private $userRepo;
@@ -24,6 +30,10 @@ class UserController extends Controller
     }
 
 
+    /**
+     * @param Request $request
+     * @return mixed|\Symfony\Component\HttpFoundation\JsonResponse
+     */
     public function register(Request $request)
     {
         try {
@@ -39,6 +49,10 @@ class UserController extends Controller
     }
 
 
+    /**
+     * @param Request $request
+     * @return mixed|\Symfony\Component\HttpFoundation\JsonResponse
+     */
     public function login(Request $request){
         try {
             $arrData = $request->all();
@@ -52,6 +66,10 @@ class UserController extends Controller
         }
     }
 
+    /**
+     * @param Request $request
+     * @return mixed|\Symfony\Component\HttpFoundation\JsonResponse
+     */
     public function logout(Request $request)
     {
         try {
